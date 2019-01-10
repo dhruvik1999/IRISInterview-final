@@ -1,5 +1,6 @@
 package com.example.dhruvik.iris_interview;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,20 +26,30 @@ public class LodingScreen extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
               //  Log.d("Code" , response);
-                GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson = gsonBuilder.create();
-                Detail[] detail= gson.fromJson(response,Detail[].class);
 
-                //Log.d("obj",detail[i] + "");
+                try {
+                    GsonBuilder gsonBuilder = new GsonBuilder();
+                    Gson gson = gsonBuilder.create();
+                    Detail[] detail = gson.fromJson(response, Detail[].class);
 
-                for(int i=0;i<detail.length;i++){
+                    //Log.d("obj",detail[i] + "");
 
-                    GsonBuilder comp_name_builder = new GsonBuilder();
-                    Gson comp_gson = gsonBuilder.create();
-                    Company[] comp_detail= gson.fromJson(response,Company[].class);
-                  Log.d("obj",detail[i].getDeadline() + "");
+                    for (int i = 0; i < detail.length; i++) {
+
+                        DataHelper.company_name.add(detail[i].getCompany().getName());
+                        DataHelper.company_type.add(detail[i].getCompany().getCompanyType());
+                        DataHelper.rec_date.add(detail[i].getRecruitmentDate());
+                        DataHelper.ded_date.add(detail[i].getDeadline());
+                        DataHelper.rec_type.add( detail[i].getRecruitmentType());
+                        DataHelper.company_url.add(detail[i].getUrl());
+                        //Log.d("obj",company.getName() + "");
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),"Internet Connection Error",Toast.LENGTH_LONG).show();
+                }finally {
+                        startActivity(new Intent(getApplicationContext(),Home.class));
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -50,4 +61,11 @@ public class LodingScreen extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
 }

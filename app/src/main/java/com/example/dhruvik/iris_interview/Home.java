@@ -23,16 +23,11 @@ public class Home extends AppCompatActivity {
 
         init();
 
-        startActivity(new Intent(this,LodingScreen.class));
 
-        String companyName[]={"Goldman Sanch","Goldman Sanch","Goldman Sanch","Goldman Sanch","Goldman Sanch","Goldman Sanch"};
-        String companyType[]={"Dream","Dream","Dream","Dream","Dream","Dream"};
-        String jobType[]={"Internship" ,"Internship" ,"Internship" ,"Internship" ,"Internship" ,"Internship" };
-        String recruitment_date[]={"18-1-2018","18-1-2018","18-1-2018","18-1-2018","18-1-2018","18-1-2018"};
-        String deadline[]={"18-1-2018","18-1-2018","18-1-2018","18-1-2018","18-1-2018","18-1-2018"};
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerAdapterLayout(this,companyName,companyType,jobType,recruitment_date,deadline));
+        recyclerView.setAdapter(new RecyclerAdapter(this));
     }
 
     private void init(){
