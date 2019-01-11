@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -45,19 +44,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final RecyclerViewHolder recyclerViewHolder, final int i) {
         recyclerViewHolder.comp_name.setText(DataHelper.company_name.get(i));
         recyclerViewHolder.comp_type.setText(DataHelper.company_type.get(i));
         recyclerViewHolder.rec_date.setText("Date : " + DataHelper.rec_date.get(i));
         recyclerViewHolder.ded_date.setText("Deadline : " + DataHelper.ded_date.get(i));
         recyclerViewHolder.job_type.setText(DataHelper.rec_type.get(i));
 
+
+        if(DataHelper.applied_company_index.contains(i)){
+            recyclerViewHolder.apply.setVisibility(View.GONE);
+        }
+
         recyclerViewHolder.apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               //  Toast.makeText(context, "Click", Toast.LENGTH_LONG).show();
 
-                postRequest();
+                postRequest(i,DataHelper.company_name.get(i),DataHelper.company_type.get(i),DataHelper.rec_type.get(i),DataHelper.rec_date.get(i),DataHelper.ded_date.get(i),recyclerViewHolder.apply);
             }
         });
     }
@@ -68,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return DataHelper.company_name.size();
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView comp_name, job_type, rec_date, ded_date, comp_type;
         Button apply;
@@ -83,7 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             apply = (Button) itemView.findViewById(R.id.apply_btn);
         }
     }
-    private void postRequest() {
+    private void postRequest(final int i,final String applied_company_name, final String applied_company_type,final String applied_job_type,final String applied_rec_date,final String applied_ded_date ,final Button apply_btn) {
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
             String URL = "https://androidtask.iris.nitk.ac.in/hrms/placement/status.json";
@@ -97,7 +101,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 public void onResponse(String response) {
                     Log.i("VOLLEY", response);
                     Toast.makeText(context,"Applied Successfully",Toast.LENGTH_LONG).show();
+                    DataHelper.applied_company_name.add(applied_company_name);
+                    DataHelper.applied_company_type.add(applied_job_type);
+                    DataHelper.applied_ded_date.add(applied_ded_date);
+                    DataHelper.applied_rec_date.add(applied_rec_date);
+                    DataHelper.applied_rec_type.add(applied_company_type);
 
+                    DataHelper.applied_company_index.add(i);
+
+                    apply_btn.setVisibility(View.GONE);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -132,7 +144,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
             };
-
             requestQueue.add(stringRequest);
         } catch (JSONException e) {
             e.printStackTrace();

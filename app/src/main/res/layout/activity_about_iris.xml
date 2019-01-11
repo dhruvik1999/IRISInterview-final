@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7b574a"
     tools:context=".AboutIris">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/iris"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="142dp"
+        android:gravity="center"
+        android:text="I R I S"
+        android:layout_centerInParent="true"
+        android:textColor="#ffff"
+        android:textSize="80dp" />
+
+    <TextView
+        android:id="@+id/plc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/iris"
+        android:text="P L A C E M E N T S "
+        android:textColor="#ffff"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/plc"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:text="N I T K "
+        android:textColor="#ffff"
+        android:textSize="20dp" />
+
+</RelativeLayout>

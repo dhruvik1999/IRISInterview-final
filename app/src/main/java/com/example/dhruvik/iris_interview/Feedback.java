@@ -9,5 +9,8 @@ public class Feedback extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+
+        //blank activity which takes feedback from user.
+        // not available NOW
     }
 }

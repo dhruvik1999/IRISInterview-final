@@ -9,5 +9,8 @@ public class AboutIris extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_iris);
+
+        //blank activity which inform about the IRIS NITK
+        // not available NOW
     }
 }

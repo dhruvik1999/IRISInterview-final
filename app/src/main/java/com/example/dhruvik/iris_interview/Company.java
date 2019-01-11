@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Company {
 
+    //java class for convert response into java object
+
     @SerializedName("company_type")
     @Expose
     private String companyType;

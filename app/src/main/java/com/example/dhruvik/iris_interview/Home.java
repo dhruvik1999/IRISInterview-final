@@ -25,17 +25,20 @@ public class Home extends AppCompatActivity implements  NavigationView.OnNavigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        init();
+        init();         // for initialization of the activity view and definition of that view.
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        // set recycler view at Home activity by using of costume_row
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RecyclerAdapter(this));
     }
 
     private void init(){
+
+        // for initialization of the activity view and definition of that view.
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer);
         toggleButton = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
@@ -47,23 +50,21 @@ public class Home extends AppCompatActivity implements  NavigationView.OnNavigat
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        // this function return true if an option item is selected
+
         if(toggleButton.onOptionsItemSelected(item)){
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
 
-    public void companyFunction(View view){
-        Toast.makeText(getApplicationContext(),"Clicked",Toast.LENGTH_SHORT).show();
-        Log.i("Clicked","Wooooooooooo");
-    }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        //Toast.makeText(getApplicationContext(),"Clicked",Toast.LENGTH_SHORT).show();
+
+        //this function is direct the activity according the item selected in navigation bar.
 
         int id = menuItem.getItemId();
 

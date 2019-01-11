@@ -25,8 +25,7 @@ public class LodingScreen extends AppCompatActivity {
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-
+                
                 try {
                     GsonBuilder gsonBuilder = new GsonBuilder();
                     Gson gson = gsonBuilder.create();
