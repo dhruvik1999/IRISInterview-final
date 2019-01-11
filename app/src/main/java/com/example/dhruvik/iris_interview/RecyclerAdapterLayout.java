@@ -57,7 +57,7 @@ public class RecyclerAdapterLayout extends RecyclerView.Adapter<RecyclerAdapterL
                     json = new JSONObject();
                     json.put("commit", "true");
                 } catch (JSONException error) {
-                    Toast.makeText(context,"Somting might be wrong.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Someting might be wrong.",Toast.LENGTH_SHORT).show();
                     Log.d("SSSS","app");
                 }
                 String url = "https://androidtask.iris.nitk.ac.in/hrms/placement/status.json";

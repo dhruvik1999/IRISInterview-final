@@ -15,6 +15,7 @@
 
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
         app:headerLayout="@layout/header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/db" android:title="COMPANIES" />
-    <item android:id="@+id/event" android:title="MY APPLICATION"/>
-    <item android:id="@+id/search" android:title="SEARCH"/>
-    <item android:id="@+id/settings" android:title="ABOUT IRIS"/>
-    <item android:id="@+id/activities" android:title="ABOUT DEVLOPER"/>
-    <item android:id="@+id/logout" android:title="FEEDBACK"/>
+    <item android:id="@+id/company_id" android:title="COMPANIES" />
+    <item android:id="@+id/my_application_id" android:title="MY APPLICATION"/>
+    <item android:id="@+id/search_id" android:title="SEARCH"/>
+    <item android:id="@+id/about_iris_id" android:title="ABOUT IRIS"/>
+    <item android:id="@+id/about_developer_id" android:title="ABOUT DEVELOPER"/>
+    <item android:id="@+id/feedback_id" android:title="FEEDBACK"/>
 </menu>

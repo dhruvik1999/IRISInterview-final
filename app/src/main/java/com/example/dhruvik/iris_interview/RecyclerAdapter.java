@@ -83,8 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             apply = (Button) itemView.findViewById(R.id.apply_btn);
         }
     }
-
-    public void postRequest() {
+    private void postRequest() {
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
             String URL = "https://androidtask.iris.nitk.ac.in/hrms/placement/status.json";

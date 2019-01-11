@@ -25,14 +25,13 @@ public class LodingScreen extends AppCompatActivity {
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-              //  Log.d("Code" , response);
+
 
                 try {
                     GsonBuilder gsonBuilder = new GsonBuilder();
                     Gson gson = gsonBuilder.create();
                     Detail[] detail = gson.fromJson(response, Detail[].class);
 
-                    //Log.d("obj",detail[i] + "");
 
                     for (int i = 0; i < detail.length; i++) {
 
