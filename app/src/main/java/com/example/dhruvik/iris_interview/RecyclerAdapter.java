@@ -29,6 +29,8 @@ import java.io.UnsupportedEncodingException;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
+    //this recycler view for showing the details of companies in Home activity.
+
     Context context;
 
     public RecyclerAdapter(Context context) {
@@ -38,6 +40,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        // and it is inflate the layout which is store in  res/layout/costume_row.xml
+
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.costume_row, viewGroup, false);
         return new RecyclerViewHolder(view);
@@ -45,6 +50,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerViewHolder recyclerViewHolder, final int i) {
+
+        // this function binding the view with the element id.
+
         recyclerViewHolder.comp_name.setText(DataHelper.company_name.get(i));
         recyclerViewHolder.comp_type.setText(DataHelper.company_type.get(i));
         recyclerViewHolder.rec_date.setText("Date : " + DataHelper.rec_date.get(i));
@@ -53,13 +61,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
 
         if(DataHelper.applied_company_index.contains(i)){
+
+            //when user applied for any company then apply button disappears.
+
             recyclerViewHolder.apply.setVisibility(View.GONE);
         }
 
         recyclerViewHolder.apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  Toast.makeText(context, "Click", Toast.LENGTH_LONG).show();
+
+                // when user click the apply button then it will send the post request.
 
                 postRequest(i,DataHelper.company_name.get(i),DataHelper.company_type.get(i),DataHelper.rec_type.get(i),DataHelper.rec_date.get(i),DataHelper.ded_date.get(i),recyclerViewHolder.apply);
             }
@@ -101,6 +113,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 public void onResponse(String response) {
                     Log.i("VOLLEY", response);
                     Toast.makeText(context,"Applied Successfully",Toast.LENGTH_LONG).show();
+
+                    //when the user applied for company then all data of applied company will store in DataHelper applied_ArrayList<String>
+
                     DataHelper.applied_company_name.add(applied_company_name);
                     DataHelper.applied_company_type.add(applied_job_type);
                     DataHelper.applied_ded_date.add(applied_ded_date);
@@ -114,6 +129,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+
+                    // if error occurs in connection
+
                     Log.e("VOLLEY", error.toString());
                     Toast.makeText(context,"Something might be wrong",Toast.LENGTH_LONG).show();
 
@@ -129,7 +147,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     try {
                         return requestBody == null ? null : requestBody.getBytes("utf-8");
                     } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
                         return null;
                     }
                 }
@@ -139,7 +156,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     String responseString = "";
                     if (response != null) {
                         responseString = String.valueOf(response.statusCode);
-                        // can get more details such as response.headers
                     }
                     return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }

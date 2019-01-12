@@ -29,6 +29,8 @@ import java.io.UnsupportedEncodingException;
 
 public class RecyclerAdapterMyApplications extends RecyclerView.Adapter<RecyclerAdapterMyApplications.RecyclerViewHolder> {
 
+    //this recycler view for MyApplication activity.
+
     Context context;
 
     public RecyclerAdapterMyApplications(Context context) {

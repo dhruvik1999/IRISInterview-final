@@ -15,6 +15,10 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+
+        // this activity basically helping to the user for finding the companies' information which are registered in NITK IRIS.
+        // not available NOW
+
         init();
 
         find_btn.setOnClickListener(new View.OnClickListener() {
